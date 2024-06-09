@@ -1,0 +1,42 @@
+{% block content %}
+{% include "header.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+<header
+        class="masthead"
+        style="background: linear-gradient(to right, #87CEFA, #00BFFF, #1E90FF);"
+>
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Password Strength Table</h1>
+                    <span class="subheading">Every password is hackable... but time and money will deter a hacker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>NVIDIA RTX 4090 GPU Hash-Rates per Algorithm</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">bcrypt - 214,842 H/Second</li>
+                    <li class="list-group-item">NTLM - 300,000,000 H/Second </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-md-9">
+                {{ table | safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
