@@ -1,6 +1,6 @@
-{% block content %}
 {% include "header.html" %}
 {% from "bootstrap5/form.html" import render_form %}
+{% block content %}
 <header
         class="masthead"
         style="background: linear-gradient(to right, #87CEFA, #00BFFF, #1E90FF);"
@@ -35,7 +35,18 @@
     </div>
     <div class="row d-flex justify-content-center mt-3">
         <div class="col-md-9">
-                {{ table | safe }}
+            <table border="1" class="dataframe table table-bordered table-dark">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th style="min-width: 3px;">Password Length</th>
+                        <th style="min-width: 3px;">1 GPUs | $1,600</th>
+                        <th style="min-width: 3px;">10 GPUs | $16,000</th>
+                        <th style="min-width: 3px;">100 GPUs | $160,000</th>
+                        <th style="min-width: 3px;">1000 GPUs | $1.6M</th>
+                    </tr>
+                </thead>
+                {{ table_body | safe }}
+            </table>
         </div>
     </div>
 </div>

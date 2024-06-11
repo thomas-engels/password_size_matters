@@ -1,12 +1,17 @@
 import pandas as pd
-import numpy
-import time
+import pprint as pretty
 
 # Facts
-NUMERICAL_CHAR_COUNT = 10
-ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
-ALPHANUMERICAL_CHAR_COUNT = 62
-ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
+password_type_dict = {
+    '1': 10,
+    '2': 52,
+    '3': 62,
+    '4': 95
+}
+# NUMERICAL_CHAR_COUNT = 10
+# ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
+# ALPHANUMERICAL_CHAR_COUNT = 62
+# ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
 
 # Assumptions
 pwd_lengths = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
@@ -49,18 +54,34 @@ def format_cracking_time(years: float) -> str:
         return f"{seconds} seconds"
 
 
-def create_time_cracking_df_table(password_type: int):
+# def create_time_cracking_df_table(password_type: int):
+#     data = {gpu: [] for gpu in gpus}
+#     for gpu in gpus:
+#         for pwd_len in pwd_lengths:
+#             years = get_cracking_time_years(password_type, pwd_len, rtx_4090_bcrypt_wf_5_hash_rate, gpu)
+#             formatted_time = format_cracking_time(years)
+#             data[gpu].append(formatted_time)
+#
+#     df = pd.DataFrame(data, index=pwd_lengths)
+#     df.index.name = 'Password Length'
+#     df.columns = [f'{gpu} GPUs' for gpu in gpus]
+#     return df
+
+def create_time_cracking_df_table(password_type: int, hash_rate):
     data = {gpu: [] for gpu in gpus}
     for gpu in gpus:
         for pwd_len in pwd_lengths:
-            years = get_cracking_time_years(password_type, pwd_len, rtx_4090_bcrypt_wf_5_hash_rate, gpu)
+            years = get_cracking_time_years(password_type, pwd_len, hash_rate, gpu)
             formatted_time = format_cracking_time(years)
             data[gpu].append(formatted_time)
 
     df = pd.DataFrame(data, index=pwd_lengths)
     df.index.name = 'Password Length'
     df.columns = [f'{gpu} GPUs' for gpu in gpus]
-    print(type(df))
+    return df
 
 
-create_time_cracking_df_table(ALPHANUMERICAL_CHAR_COUNT)
+# create_time_cracking_df_table(ALPHANUMERICAL_CHAR_COUNT)
+df = create_time_cracking_df_table(password_type_dict['3'], rtx_4090_bcrypt_wf_5_hash_rate)
+df_table_html = df.to_html(classes=["table table-bordered", "table-striped", "table-hover"])
+pretty.pprint(df_table_html)
