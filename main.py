@@ -21,10 +21,10 @@ password_type_dict = {
     '3': 62,
     '4': 95
 }
-# NUMERICAL_CHAR_COUNT = 10
-# ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
-# ALPHANUMERICAL_CHAR_COUNT = 62
-# ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
+NUMERICAL_CHAR_COUNT = 10
+ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
+ALPHANUMERICAL_CHAR_COUNT = 62
+ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
 
 # Assumptions
 pwd_lengths = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
@@ -96,7 +96,7 @@ def create_time_cracking_df_table(password_type: int, hash_rate):
 def home():
     password_form = PasswordForm()
     df = create_time_cracking_df_table(password_type_dict['1'], rtx_4090_bcrypt_wf_5_hash_rate)
-    df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark"],
+    df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
                                col_space=3,
                                justify='center')
     soup = BeautifulSoup(df_table_html, 'html.parser')
@@ -107,7 +107,7 @@ def home():
         hash_rate = password_form.hash_rate.data
         df = create_time_cracking_df_table(password_type_dict[pwd_type], hash_rate)
         pretty.pprint(df)
-        df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark"],
+        df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
                                    col_space=3,
                                    justify='center',
                                    )

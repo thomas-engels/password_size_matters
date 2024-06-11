@@ -3,51 +3,129 @@
 {% block content %}
 <header
         class="masthead"
-        style="background: linear-gradient(to right, #87CEFA, #00BFFF, #1E90FF);"
+        style="background: black"
 >
+<!--        linear-gradient(to right, #FF1700, #FF8E00, #FFE400, #06FF00);"-->
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="col-md-9">
                 <div class="site-heading">
-                    <h1>Password Strength Table</h1>
-                    <span class="subheading">Every password is hackable... but time and money will deter a hacker</span>
+                    <h1>Password Resiliency Table</h1>
+                    <span class="subheading">the time and cost to crack your password</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<div class="container mb-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <h2>What is "Password Hacking"?</h2>
+            <hr>
+            <p>First, you must first understand the two characteristics of a password: the allowable characters (^%$[.🔋#AzrR5❤️💎...) and your chosen length (8 to 20 typically).
+                Together these characteristics determine the difficulty of cracking the password. More allowable characters, harder to hack. Longer password, even harder to hack! Why?
+                Simply raise the number of allowable characters to the power of the password length to determine the number of possible passwords... you'll need a calculator.
+                As you'll see below, password length is far more impactful than character passwords.
+                Randomness increases the guessing
+
+
+
+                This question is best answered through an example. Let us say <em>Company X</em> fell victim to a data breach; and the usernames and passwords for 500 million customers were stolen!
+                If the company is reasonably secure, they never stored the actual passwords on their servers and rather they stored an encryption of the password.
+            </p>
+        </div>
+    </div>
     <div class="row d-flex justify-content-center">
-        <div class="col-md-6">
-            {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Table Inputs
+                </div>
+                <div class="card-body">
+                    {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    <h4>NVIDIA RTX 4090 GPU Hash-Rates per Algorithm</h4>
+                    GPU: NVIDIA RTX 4090
+                </div>
+                <div class="card-body">
+                    The world's most powerful consumer-accessible GPU (Graphics Processing Unit).
+                    Incredibly fast at performing bitwise and integer computations; the foundation of password encryption.
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    Password Encryption Algorithms
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">bcrypt - 214,842 H/Second</li>
-                    <li class="list-group-item">NTLM - 300,000,000 H/Second </li>
+                    <li class="list-group-item"><a href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd">bcrypt(work factor 5) - 214,842 H/Sec</a></li>
+                    <li class="list-group-item"><a href="https://www.synercomm.com/blog/password-hash-cracking-with-the-nvidia-rtx-4090/">NTLM - 252,000,000,000 H/Sec</a></li>
+                    <li class="list-group-item"><a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green-2023?utm_source=2024post">MD5 - 164,100,000,000 H/Sec</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="row d-flex justify-content-center mt-3">
+    <div class="row justify-content-center my-2">
         <div class="col-md-9">
-            <table border="1" class="dataframe table table-bordered table-dark">
-                <thead>
-                    <tr style="text-align: center;">
-                        <th style="min-width: 3px;">Password Length</th>
-                        <th style="min-width: 3px;">1 GPUs | $1,600</th>
-                        <th style="min-width: 3px;">10 GPUs | $16,000</th>
-                        <th style="min-width: 3px;">100 GPUs | $160,000</th>
-                        <th style="min-width: 3px;">1000 GPUs | $1.6M</th>
-                    </tr>
-                </thead>
-                {{ table_body | safe }}
-            </table>
+            <hr>
         </div>
     </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header"><h2>Brute Force Time Cracking Table</h2></div>
+                <div class="card-body bg-dark">
+                    <table border="1" class="dataframe table table-bordered table-dark table-responsive">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th style="min-width: 3px;">Password Length</th>
+                                <th style="min-width: 3px;">1 GPUs | $1,600</th>
+                                <th style="min-width: 3px;">10 GPUs | $16,000</th>
+                                <th style="min-width: 3px;">100 GPUs | $160,000</th>
+                                <th style="min-width: 3px;">1000 GPUs | $1.6M</th>
+                            </tr>
+                        </thead>
+                        {{ table_body | safe }}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center my-2">
+        <div class="col-md-9">
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-around">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <p>Preview of the Code and Math behind the table</p>
+                </div>
+                <div class="card-body bg-dark" style="color: #06FF00">
+<pre><code class="language-python">
+NUMERICAL_CHAR_COUNT = 10
+ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
+ALPHANUMERICAL_CHAR_COUNT = 62
+ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
+rtx_4090_bcrypt_wf_5_hash_rate = 214842
+
+def get_cracking_time_years(char_count: int, password_length: int, hash_rate: int, gpu_count: int) -> float:
+    hash_rate = hash_rate * gpu_count
+    return round(((char_count**password_length)/hash_rate)/60/60/24/365, 4)
+</code></pre>
+                    <p> See all my code here on GitHub: <a href="https://github.com/thomas-engels/password_size_matters">https://github.com/thomas-engels/password_size_matters</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

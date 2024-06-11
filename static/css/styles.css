@@ -19,7 +19,7 @@ header.masthead:before {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  color: #fff;
+  color: #06FF00;
 }
 header.masthead .page-heading,
 header.masthead .site-heading {
@@ -94,3 +94,8 @@ header.masthead .post-heading .meta a {
 .table.dataframe td.weak { background-color: #FF8E00; }
 .table.dataframe td.medium { background-color: #FFE400; }
 .table.dataframe td.strong { background-color: #06FF00; }
+
+.card-header {
+    background-color: black;
+    color: #06FF00;
+}
