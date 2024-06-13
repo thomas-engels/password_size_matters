@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from forms import PasswordForm
 import pandas as pd
@@ -6,13 +6,14 @@ from bs4 import BeautifulSoup
 import os
 from dotenv import load_dotenv
 import pprint as pretty
+import smtplib
 
 load_dotenv()
 
 app = Flask(__name__)
 Bootstrap5(app)
 
-app.config['SECRET_KEY'] = 'mysecretkey'  # os.environ.get('FLASK_KEY')
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 
 # Facts
 password_type_dict = {
@@ -95,13 +96,14 @@ def create_time_cracking_df_table(password_type: int, hash_rate):
 @app.route('/', methods=['POST', 'GET'])
 def home():
     password_form = PasswordForm()
-    df = create_time_cracking_df_table(password_type_dict['1'], rtx_4090_bcrypt_wf_5_hash_rate)
+    df = create_time_cracking_df_table(password_type_dict['3'], 215000)
     df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
                                col_space=3,
                                justify='center')
     soup = BeautifulSoup(df_table_html, 'html.parser')
     df_table_body = soup.find('tbody')
     pretty.pprint(df_table_body)
+    scroll_to = None
     if password_form.validate_on_submit():
         pwd_type = password_form.password_type.data
         hash_rate = password_form.hash_rate.data
@@ -114,12 +116,39 @@ def home():
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
         pretty.pprint(df_table_body)
-    return render_template('index.html', table_body=df_table_body, form=password_form)
+        scroll_to = 'main-section'
+    return render_template('index.html', table_body=df_table_body, form=password_form, scroll_to=scroll_to)
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        data = request.form
+        send_email(data["name"], data["email"], data["phone"], data["message"])
+        return redirect(url_for('home'))  # , msg_sent=True))
+    return redirect(url_for('home'))  # , msg_sent=None))
+
+
+def send_email(name, email, phone, message):
+    email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nPhone: {phone}\nMessage:{message}"
+    mail_address = os.environ.get('EMAIL_KEY')
+    mail_app_pw = os.environ.get('EMAIL_PASSWORD')
+    to_email_key = os.environ.get('TO_EMAIL_KEY')
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=mail_address, password=mail_app_pw)
+        connection.sendmail(from_addr=mail_address, to_addrs=to_email_key, msg=email_message)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-
-
+# TODO: Finish intro paragraph
+#
+# TODO: Ensure submit button/page refresh doesn’t send user back to the top
+#
+# TODO: Move the table criteria to bottom of table
+#
+# TODO: Add footer with link to my blog website
+#
+# TODO: Random password generator but also link them to keeper

@@ -1,6 +1,13 @@
 {% include "header.html" %}
 {% from "bootstrap5/form.html" import render_form %}
 {% block content %}
+{% if scroll_to == 'main-section' %}
+<script>
+    window.onload = function() {
+        document.getElementById('main-section').scrollIntoView();
+    };
+</script>
+{% endif %}
 <header
         class="masthead"
         style="background: black"
@@ -10,8 +17,8 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-9">
                 <div class="site-heading">
-                    <h1>Password Resiliency Table</h1>
-                    <span class="subheading">the time and cost to crack your password</span>
+                    <h1></h1>
+                    <span class="subheading"></span>
                 </div>
             </div>
         </div>
@@ -20,26 +27,143 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-9">
-            <h2>What is "Password Hacking"?</h2>
-            <hr>
-            <p>First, you must first understand the two characteristics of a password: the allowable characters (^%$[.🔋#AzrR5❤️💎...) and your chosen length (8 to 20 typically).
-                Together these characteristics determine the difficulty of cracking the password. More allowable characters, harder to hack. Longer password, even harder to hack! Why?
-                Simply raise the number of allowable characters to the power of the password length to determine the number of possible passwords... you'll need a calculator.
-                As you'll see below, password length is far more impactful than character passwords.
-                Randomness increases the guessing
+            <h2>What is "Password Cracking"?</h2>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa-solid fa-1 fa-2xl" style="color: blue"></i>
+                                Password Fundamentals
+                            </button>
+                        </h5>
+                    </div>
 
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>First, you must first understand the two characteristics of a password: the allowable
+                                characters
+                                (^%$[.🔋#AzrR5❤️💎...) and your chosen length (8 to 20 typically).
+                                Together these characteristics determine the difficulty of "cracking" the password. More
+                                allowable
+                                characters, harder to "crack". Longer password, extremely hard to hack! Why?
+                                Simply raise the number of allowable characters to the power of the password length to
+                                determine the
+                                number of possible passwords... you'll need a calculator for these massive numbers. Or
+                                you can use my calculator and table below!
+                            </p>
+                            <p>
+                                Secondly, you must understand what companies and websites do after you create your
+                                password.
+                                If they're a quality service, they encrypt your password using a complex, deterministic,
+                                "one-way" function that results in a 32-character list of seemingly random numbers and
+                                letters.
+                                This long random string is called the password hash, which is stored on their servers.
+                                In fact, they should never know your plain-text password, only your password hash.
+                                (For the technically curious, they ideally strengthen the encryption by salting and
+                                padding your password. Learn more here).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                <i class="fa-solid fa-2 fa-2xl" style="color: blue"></i>
+                                Cracking Fundamentals and Example
+                            </button>
+                        </h5>
+                    </div>
 
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>
+                                Let's assume your favorite company just suffered a major data breach (e.g., TicketMaster
+                                in June 2024) and the hackers stole millions of users password hashes.
+                                Don't panic yet...
+                                The hackers have two choices now; sell the password hashes on the dark web or start
+                                doing A LOT of math. By "Math", I'm referring to hackers generating millions and
+                                millions of password hashes with the hope of finding a match from the data breach's
+                                hashes.
+                                If a match is found, then the hacker simply looks at what plain-text password generated
+                                the matching hash and boom--password cracked!
+                                This is "Password Cracking": generating password hashes and discovering matches from the
+                                data breach.
+                                (For the technically curious, this process can be expedited using rainbow tables. Learn
+                                more here).
+                            </p>
+                            <p>
+                                After finding a match, the hacker's computer program will attempt to log in to hundreds
+                                of websites using with your username and password.
+                                If they successfully log in to a website, you've officially been hacked. And if you
+                                re-used that password, well you've just made an extra happy hacker.
+                                Don't reuse any passwords.
+                            <p>
+                                In many cases, the hackers will prioritize generating hashes for the minimum password
+                                requirement types; e.g., TicketMaster requires an 8-character password
+                                containing at least 1 number and 1 letter. If you're a normal person, your passwords
+                                likely do not exceed these minimum requirements
+                                because it's the most convenient. Given the time and cost to generate hashes, hackers
+                                thus only focus on these minimum requirements when generating their hashes.
+                                If TicketMaster is using one of the most secure password encryption algorithms (bcrypt),
+                                it will take roughly 12 days to generate EVERY password hash with less than $2M.
+                                If TickerMaster is using a less secure, yet common encryption algorithm (MD5), it will
+                                take less than 1 second to generate EVERY password hash for less than $2K.
+                            </p>
+                            <p>
+                                As a TicketMaster customer, should I be concerned? This depends on the length of my
+                                password. If my password is 8 characters, yes I should be concerned and reset my
+                                password.
+                                If my password is long (15 to 20 characters), I could reset my password to be extra
+                                careful but cracking my password will take forever so the hackers won't even bother.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="true" aria-controls="collapseThree">
+                                <i class="fa-solid fa-3 fa-2xl" style="color: blue"></i> Takeaways and Password Managers
+                            </button>
+                        </h5>
+                    </div>
 
-                This question is best answered through an example. Let us say <em>Company X</em> fell victim to a data breach; and the usernames and passwords for 500 million customers were stolen!
-                If the company is reasonably secure, they never stored the actual passwords on their servers and rather they stored an encryption of the password.
-            </p>
+                    <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>
+                                So what's the takeaway? Long passwords (15-20) and never re-using them will make you
+                                highly resilient to hackers.
+                                Regardless of hacker's computational power, a company using crappy password encryption
+                                or their inability to secure their servers,
+                            </p>
+                            <h5>The Answer</h5>
+                            <p>
+                                Stop memorizing crappy passwords, instead you should use a Password Manager like Keeper,
+                                1Password, or Bitwarden.
+                                You'll make yourself safer. You'll make everyone safer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="row justify-content-center my-2">
+        <div class="col-md-9">
+            <hr>
+        </div>
+    </div>
+    <a id="main-section"></a>
     <div class="row d-flex justify-content-center">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    Table Inputs
+                    <h3>Table Generator</h3>
                 </div>
                 <div class="card-body">
                     {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
@@ -47,9 +171,9 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card">
+             <div class="card mb-2">
                 <div class="card-header">
-                    GPU: NVIDIA RTX 4090
+                    Hardware: NVIDIA RTX 4090 GPU
                 </div>
                 <div class="card-body">
                     The world's most powerful consumer-accessible GPU (Graphics Processing Unit).
@@ -57,23 +181,17 @@
 
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
+
             <div class="card">
                 <div class="card-header">
                     Password Encryption Algorithms
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd">bcrypt(work factor 5) - 214,842 H/Sec</a></li>
+                    <li class="list-group-item"><a href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd">bcrypt(factor 5) - 191,000 H/Sec</a></li>
                     <li class="list-group-item"><a href="https://www.synercomm.com/blog/password-hash-cracking-with-the-nvidia-rtx-4090/">NTLM - 252,000,000,000 H/Sec</a></li>
                     <li class="list-group-item"><a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green-2023?utm_source=2024post">MD5 - 164,100,000,000 H/Sec</a></li>
                 </ul>
             </div>
-        </div>
-    </div>
-    <div class="row justify-content-center my-2">
-        <div class="col-md-9">
-            <hr>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
@@ -104,9 +222,9 @@
     </div>
     <div class="row justify-content-around">
         <div class="col-md-9">
-            <div class="card">
+            <div class="card pb-0">
                 <div class="card-header">
-                    <p>Preview of the Code and Math behind the table</p>
+                    Preview of the Code and Math behind the table
                 </div>
                 <div class="card-body bg-dark" style="color: #06FF00">
 <pre><code class="language-python">
@@ -120,12 +238,25 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
     hash_rate = hash_rate * gpu_count
     return round(((char_count**password_length)/hash_rate)/60/60/24/365, 4)
 </code></pre>
-                    <p> See all my code here on GitHub: <a href="https://github.com/thomas-engels/password_size_matters">https://github.com/thomas-engels/password_size_matters</a>
-                    </p>
+                </div>
+                <div class="card-footer">
+                    See all my code here on GitHub: <a href="https://github.com/thomas-engels/password_size_matters">
+                        https://github.com/thomas-engels/password_size_matters</a>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="row justify-content-center my-2">
+        <div class="col-md-9">
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        {% include "contact.html" %}
+    </div>
+</div>
+<hr>
+<div class="row justify-content-center">
+    {% include "footer.html" %}
 </div>
 {% endblock %}
