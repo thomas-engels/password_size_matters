@@ -1,64 +1,62 @@
-<div class="col-md-9 contact">
-    <div>
-        <h3>Questions or comments?</h3>
-        <form
-                id="contactForm"
-                name="sentMessage"
-                action="{{ url_for('contact') }}"
-                method="post"
-        >
-            <div class="form-floating">
-                <input
-                        class="form-control"
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Enter your name..."
-                        required
-                />
-                <label for="name">Name</label>
-            </div>
-            <div class="form-floating">
-                <input
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Enter your email..."
-                        required
-                />
-                <label for="email">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input
-                        class="form-control"
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="Enter your phone number..."
-                        required
-                />
-                <label for="phone">Phone Number</label>
-            </div>
-            <div class="form-floating">
+<h3>Questions or comments?</h3>
+<div>
+<form
+        id="contactForm"
+        name="sentMessage"
+        action="{{ url_for('contact') }}"
+        method="post"
+>
+    <div class="form-floating">
+        <input
+                class="form-control  pl-0"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Name"
+                required
+        />
+        <label for="name"> Name</label>
+    </div>
+    <div class="form-floating">
+        <input
+                class="form-control  pl-0"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+        />
+         <label for="email">Email address</label>
+    </div>
+    <div class="form-floating">
+        <input
+                class="form-control  pl-0"
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                required
+        />
+        <label for="phone">Phone Number</label>
+    </div>
+    <div class="form-floating">
               <textarea
-                      class="form-control"
+                      class="form-control pl-0"
                       id="message"
                       name="message"
-                      placeholder="Enter your message here..."
+                      placeholder="Message"
                       required
                       style="height: 10rem"
               ></textarea>
-                <label for="message">Message</label>
-            </div>
-            <br/>
-            <button
-                    class="btn btn-primary text-uppercase"
-                    id="submitButton"
-                    type="submit"
-            >
-                Send Message
-            </button>
-        </form>
+        <label for="message">Message</label>
     </div>
+    <br/>
+    <button
+            class="btn btn-primary text-uppercase"
+            id="submitButton"
+            type="submit"
+    >
+        Send Message
+    </button>
+</form>
 </div>

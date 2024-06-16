@@ -20,7 +20,7 @@ password_type_dict = {
     '1': 10,
     '2': 52,
     '3': 62,
-    '4': 95
+    '4': 70
 }
 NUMERICAL_CHAR_COUNT = 10
 ALPHABETICAL_UPPER_LOWER_CHAR_COUNT = 52
