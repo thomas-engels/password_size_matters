@@ -141,14 +141,4 @@ def send_email(name, email, phone, message):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-# TODO: Finish intro paragraph
-#
-# TODO: Ensure submit button/page refresh doesn’t send user back to the top
-#
-# TODO: Move the table criteria to bottom of table
-#
-# TODO: Add footer with link to my blog website
-#
-# TODO: Random password generator but also link them to keeper
+    app.run(debug=False)

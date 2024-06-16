@@ -13,3 +13,12 @@ $(document).ready(function() {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var buttons = document.querySelectorAll('.explanations .card-header .btn');
+    buttons.forEach(function(button) {
+        button.addEventListener('mouseenter', function() {
+            button.click();
+        });
+    });
+});

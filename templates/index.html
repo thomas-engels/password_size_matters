@@ -25,17 +25,20 @@
     </div>
 </header>
 <div class="container">
-    <div class="mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5 justify-content-center">
-        <h1 class="display-5 fw-bold">What is "Password Cracking/Hacking"?</h1>
-          <div id="accordion">
-                <div class="card">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header"><h2>What is Password Cracking?</h2></div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <div id="accordion">
+                <div class="card explanations">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
                             <button class="btn btn-link pl-0" data-toggle="collapse" data-target="#collapseOne"
                                     aria-expanded="true" aria-controls="collapseOne">
                                 <i class="fa-solid fa-1 fa-2xl pr-2"></i>
-                                Password fundamentals...
+                                The Fundamentals...
                             </button>
                         </h5>
                     </div>
@@ -63,13 +66,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card explanations">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link p-0" data-toggle="collapse" data-target="#collapseTwo"
                                     aria-expanded="true" aria-controls="collapseTwo">
                                 <i class="fa-solid fa-2 fa-2xl pr-2"></i>
-                                Putting things into context...
+                               Adding context...
                             </button>
                         </h5>
                     </div>
@@ -115,13 +118,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card explanations">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn btn-link p-0" data-toggle="collapse" data-target="#collapseThree"
                                     aria-expanded="true" aria-controls="collapseThree">
                                 <i class="fa-solid fa-3 fa-2xl pr-2"></i>
-                                Best practices...
+                                Do Something About It...
                             </button>
                         </h5>
                     </div>
@@ -133,7 +136,8 @@
                                 highly resilient to hackers. Cracking such a long password simply isn't worth the hacker's time and money.
                                 And even if they manage to crack it, their access will be limited to a single service.
                             </p>
-                            <h5>How do you always generate long passwords and NEVER re-use them? A Password Manager!</h5>
+                            <h5>How do you always generate long passwords and NEVER re-use them?</h5>
+                            <h5 style="color: green;">A Password Manager!</h5>
                             <p>
                                 KeeperSecurity (<a href="https://www.keepersecurity.com/">https://www.keepersecurity.com/</a>) is my preferred Password Manager.
                                 At less than $3 per month, I enjoy advanced encryption standards, dark web monitoring, integrations to every OS and device,
@@ -153,11 +157,9 @@
                     </div>
                 </div>
             </div>
-      </div>
-    </div>
-    <div class="row justify-content-center my-2">
-        <div class="col-md-9">
-
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center my-2">
@@ -165,7 +167,6 @@
             <hr>
         </div>
     </div>
-    <a id="main-section"></a>
     <div class="row d-flex justify-content-center my-2">
         <div class="col-md-9">
             <div class="card">
@@ -175,6 +176,7 @@
                         {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
                     </h5>
                     <table border="1" class="dataframe table table-bordered table-dark table-responsive p-2 rounded">
+                        <a id="main-section"></a>
                         <thead>
                             <tr style="text-align: center;">
                                 <th style="min-width: 3px;">Password Length</th>
