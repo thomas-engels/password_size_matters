@@ -460,7 +460,6 @@ header.masthead .post-heading .meta a {
     box-sizing: border-box;
 }
 
-/* Radio button styling */
 .form-check {
     margin-bottom: 10px;
 }
@@ -484,3 +483,9 @@ header.masthead .post-heading .meta a {
     box-shadow: none;
     width: 100%;
 }
+
+.explanations .btn:hover, .explanations .btn:focus, .explanations .btn:active{
+    text-decoration: none;
+    color: white;
+}
+
