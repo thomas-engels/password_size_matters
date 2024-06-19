@@ -532,3 +532,7 @@ header.masthead .post-heading .meta a {
 .dropdown-menu a {
     color: black;
 }
+
+html {
+    scroll-behavior: smooth;
+}
