@@ -14,6 +14,22 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+    $('a.dropdown-menu').on('click', function(event) {
+        if (this.hash !== '') {
+            event.preventDefault();
+
+            const hash = this.hash;
+
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        }
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     var links = document.querySelectorAll('.introduction .nav-link');
     console.log(links);

@@ -10,7 +10,7 @@
 </script>
 {% endif %}
 <header
-        class="masthead"
+        class="masthead mb-0"
         style="background: black"
 >
     <div class="container position-relative px-4 px-lg-5">
@@ -24,7 +24,24 @@
         </div>
     </div>
 </header>
-<div class="container introduction">
+<div class="container fixed-top">
+<div class="row justify-content-end mx-4">
+    <div class="dropdown">
+        <button class="btn" type="button" id="dropdownMenu2"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-bars fa-xl"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right text-right pr-0" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button"><a href="#intro-section">Introduction</a></button>
+            <button class="dropdown-item" type="button"><a href="#table-section">Calculator and Table</a></button>
+            <button class="dropdown-item" type="button"><a href="#code-section">Math and Code</a></button>
+            <button class="dropdown-item" type="button" ><a href="#contact-section">Contact</a></button>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container introduction mt-5" id="intro-section">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card text-center">
@@ -51,7 +68,7 @@
                         allowable characters, harder to crack. Longer password, <em>exponentially</em> hard to crack.
                         Simply raise the number of allowable characters to the power of the password length to
                         determine the number of possible passwords... you will need a calculator! Or you can use my calculator and table;
-                        which demonstrates why <strong>password length matters way more important than using special characters.</strong>
+                        which demonstrates why <strong>password length is far more impactful than special characters.</strong>
                     </p>
                     <p>
                         Secondly, you must understand what companies and websites do after you create your
@@ -154,6 +171,8 @@
             <hr>
         </div>
     </div>
+    </div>
+<div class="container" id="table-section">
     <div class="row d-flex justify-content-center my-2 main">
         <div class="col-md-9">
             <div class="card">
@@ -246,6 +265,8 @@
             <hr>
         </div>
     </div>
+</div>
+<div class="container" id="code-section">
     <div class="row justify-content-around my-2">
         <div class="col-md-9 code-snippet">
             <div class="card pb-0">
@@ -271,6 +292,8 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
             <hr>
         </div>
     </div>
+</div>
+<div class="container" id="contact-section">
     <div class="row justify-content-center mt-0">
         <div class="col-md-9 contact">
             {% include "contact.html" %}
