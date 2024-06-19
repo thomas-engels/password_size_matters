@@ -14,49 +14,39 @@ $(document).ready(function() {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll('.introduction .nav-link');
+    console.log(links);
+    var card_bodies = document.querySelectorAll('.introduction .card-body');
+    console.log(card_bodies);
+    var card = document.querySelector('.card');
+    console.log(card)
+    var table = document.querySelector('#main-section')
+    console.log(table)
+    var button = document.querySelector('.main .btn')
+    console.log(button)
 
-document.addEventListener('DOMContentLoaded', function () {
-    var first_section_button = document.querySelector("#headingOne button");
-    first_section_button.addEventListener('click', function(){
-        first_a = document.querySelector("#first-collapse")
-        console.log(first_a)
-        first_a.scrollIntoView()
-    });
-    var second_section_button = document.querySelector("#headingTwo button");
-    second_section_button.addEventListener('click', function(){
-        second_a = document.getElementById("#second-collapse")
-        second_a.scrollIntoView()
-    });
-    var third_section_button = document.querySelector("#headingThree button");
-    third_section_button.addEventListener('mouseover', function(){
-        third_a = document.getElementById("#third-collapse")
-        third_a.scrollIntoView()
-    });
+    links.forEach(function(link){
+        link.addEventListener('click', function(event){
 
-//    // Smooth scroll to #headingOne on click over button in #headingOne
-//    var button_1 = document.querySelector('#headingOne .btn');
-//    button_1.addEventListener('click', function() {
-//        var targetElement = document.getElementById('headingOne');
-//        if (targetElement) {
-//            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-//        }
-//    });
-//    // Smooth scroll to #headingTwo on click over button in #headingTwo
-//    var button_2 = document.querySelector('#headingTwo .btn');
-//    button_2.addEventListener('click', function() {
-//        var targetElement = document.getElementById('headingTwo');
-//        if (targetElement) {
-//            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-//        }
-//    });
-//
-//    var button_3 = document.querySelector('#headingThree .btn');
-//    button_3.addEventListener('click', function() {
-//        var targetElement = document.getElementById('headingThree');
-//        if (targetElement) {
-//            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-//        }
-//    });
+            event.preventDefault();
 
-    // Add more event listeners for other buttons as needed
+            links.forEach(function(link){
+                link.classList.remove('active');
+            });
+
+            link.classList.add('active');
+
+            card_bodies.forEach(function(card_body){
+                card_body.classList.remove('active');
+            });
+
+            // Show Tab by querying the links target-attribute; which returns the target card body element
+            var target = document.querySelector(link.getAttribute('data-target'));
+            // Simply add the target card body element
+            target.classList.add('active');
+
+            card.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 });

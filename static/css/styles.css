@@ -489,3 +489,33 @@ header.masthead .post-heading .meta a {
     color: white;
 }
 
+.introduction .card-body {
+    display: none;
+}
+.introduction .card-body.active {
+    display: block;
+}
+
+.introduction .card-header,
+#table-card-header {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.introduction .nav-pills .nav-link {
+    background-color: transparent;
+    border-radius: 0;
+    color: white;
+}
+
+.introduction .nav-pills .nav-link.active {
+    border-bottom: 2px #06FF00 solid;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #06FF00;
+    color: black;
+}

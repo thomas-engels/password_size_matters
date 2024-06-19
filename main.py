@@ -96,14 +96,14 @@ def create_time_cracking_df_table(password_type: int, hash_rate):
 @app.route('/', methods=['POST', 'GET'])
 def home():
     password_form = PasswordForm()
-    df = create_time_cracking_df_table(password_type_dict['3'], 215000)
+    df = create_time_cracking_df_table(password_type_dict['3'], 164100000000)
     df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
                                col_space=3,
                                justify='center')
     soup = BeautifulSoup(df_table_html, 'html.parser')
     df_table_body = soup.find('tbody')
     pretty.pprint(df_table_body)
-    scroll_to = None
+    scroll = False
     if password_form.validate_on_submit():
         pwd_type = password_form.password_type.data
         hash_rate = password_form.hash_rate.data
@@ -116,8 +116,8 @@ def home():
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
         pretty.pprint(df_table_body)
-        scroll_to = 'main-section'
-    return render_template('index.html', table_body=df_table_body, form=password_form, scroll_to=scroll_to)
+        scroll = True
+    return render_template('index.html', table_body=df_table_body, form=password_form, scroll=scroll)
 
 
 @app.route("/contact", methods=["GET", "POST"])
