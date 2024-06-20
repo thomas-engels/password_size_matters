@@ -93,8 +93,8 @@ def create_time_cracking_df_table(password_type: int, hash_rate):
     return df
 
 
-@app.route('/', methods=['POST', 'GET'])
-def home():
+@app.route('/', methods=['GET'])
+def display_home():
     password_form = PasswordForm()
     df = create_time_cracking_df_table(password_type_dict['3'], 164100000000)
     df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
@@ -104,6 +104,12 @@ def home():
     df_table_body = soup.find('tbody')
     pretty.pprint(df_table_body)
     scroll = False
+    return render_template('index.html', table_body=df_table_body, form=password_form, scroll=scroll)
+
+
+@app.route('/', methods=["POST"])
+def update_table():
+    password_form = PasswordForm()
     if password_form.validate_on_submit():
         pwd_type = password_form.password_type.data
         hash_rate = password_form.hash_rate.data
@@ -117,16 +123,17 @@ def home():
         df_table_body = soup.find('tbody')
         pretty.pprint(df_table_body)
         scroll = True
+    else:
+        df_table_body = None
+        scroll = False
     return render_template('index.html', table_body=df_table_body, form=password_form, scroll=scroll)
 
-
-@app.route("/contact", methods=["GET", "POST"])
+@app.route("/contact", methods=["POST"])
 def contact():
     if request.method == "POST":
         data = request.form
         send_email(data["name"], data["email"], data["phone"], data["message"])
-        return redirect(url_for('home'))  # , msg_sent=True))
-    return redirect(url_for('home'))  # , msg_sent=None))
+    return redirect(url_for('home'))
 
 
 def send_email(name, email, phone, message):

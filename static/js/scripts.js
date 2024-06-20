@@ -14,33 +14,34 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
-    $('a.dropdown-menu').on('click', function(event) {
-        if (this.hash !== '') {
+document.addEventListener("DOMContentLoaded", function() {
+    var nav_links = document.querySelectorAll('.dropdown-item')
+    console.log(nav_links[0])
+    var sections = document.querySelectorAll('h3')
+    var parents = []
+    for (let i = 0; i < sections.length; i++) {
+        parents.push(sections[i].parentElement.parentElement)
+    };
+    console.log(parents)
+    console.log(sections[0])
+    for (let i = 0; i < sections.length; i++) {
+        nav_links[i].addEventListener('click', function(event) {
             event.preventDefault();
+            parents[i].scrollIntoView({ behavior: 'smooth'} );
+        });
+    }
 
-            const hash = this.hash;
-
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 800, function(){
-                window.location.hash = hash;
-            });
-        }
-    });
 });
 
 document.addEventListener("DOMContentLoaded", function() {
     var links = document.querySelectorAll('.introduction .nav-link');
-    console.log(links);
+
     var card_bodies = document.querySelectorAll('.introduction .card-body');
-    console.log(card_bodies);
+
     var card = document.querySelector('.card');
-    console.log(card)
-    var table = document.querySelector('#main-section')
-    console.log(table)
-    var button = document.querySelector('.main .btn')
-    console.log(button)
+
+
+
 
     links.forEach(function(link){
         link.addEventListener('click', function(event){

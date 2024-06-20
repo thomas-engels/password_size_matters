@@ -4,8 +4,8 @@
 {% if scroll == True %}
 <script>
     document.addEventListener("DOMContentLoaded", function(){
-        var table = document.querySelector('#main-section')
-        table.scrollIntoView();
+        var table = document.querySelector('#time-table')
+        table.scrollIntoView({ behavior: 'instant' });
     });
 </script>
 {% endif %}
@@ -32,21 +32,21 @@
                 aria-haspopup="true" aria-expanded="false">
             <i class="fa-solid fa-bars fa-xl"></i>
         </button>
-        <div class="dropdown-menu dropdown-menu-right text-right pr-0" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button"><a href="#intro-section">Introduction</a></button>
-            <button class="dropdown-item" type="button"><a href="#table-section">Calculator and Table</a></button>
-            <button class="dropdown-item" type="button"><a href="#code-section">Math and Code</a></button>
-            <button class="dropdown-item" type="button" ><a href="#contact-section">Contact</a></button>
+        <div class="dropdown-menu dropdown-menu-right text-right pr-2 pl-4" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Introduction</button>
+            <button class="dropdown-item" type="button">Time Table</button>
+            <button class="dropdown-item" type="button">Math and Code</button>
+            <button class="dropdown-item" type="button">Contact</button>
         </div>
     </div>
 </div>
 </div>
-<div class="container introduction mt-5" id="intro-section">
+<div class="container introduction mt-5" id="context-section">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card text-center">
                 <div class="card-header">
-                    <h2>Pre-Requisite Knowledge</h2>
+                    <h3>Context</h3>
                     <ul class="nav nav-pills card-header-pills justify-content-around">
                         <li class="nav-item">
                             <a class="nav-link active" href="#" data-target="#tab-1"><i class="fa-solid fa-1"></i>: What are Passwords?</a>
@@ -171,12 +171,13 @@
             <hr>
         </div>
     </div>
-    </div>
+</div>
 <div class="container" id="table-section">
     <div class="row d-flex justify-content-center my-2 main">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header text-center" id="table-card-header"><h2>Time and Cost To Crack Passwords</h2></div>
+                <div class="card-header text-center" id="table-card-header">
+                    <h3>Time and Cost To Crack Passwords</h3></div>
                 <div class="card-body bg-dark">
                     <div class="row">
                         <div class="col-sm-12 col-md-7 mt-2">
@@ -210,24 +211,21 @@
                         </div>
                         </div>
                     </div>
-                    <a id="main-section">
-                        <h4 style="color: transparent">space</h4>
-                    </a>
-                    <table border="1" class="dataframe table table-bordered table-dark table-responsive p-2 rounded mt-5">
+                    <table id='time-table' border="1" class="dataframe table table-bordered table-dark table-responsive p-2 rounded mt-5">
                         <thead>
                             <tr style="text-align: center;">
                                 <th style="min-width: 3px;">Password Length</th>
-                                <th style="min-width: 3px;">1 GPUs | cost $1,600</th>
-                                <th style="min-width: 3px;">10 GPUs | cost $16,000</th>
-                                <th style="min-width: 3px;">100 GPUs | cost $160,000</th>
-                                <th style="min-width: 3px;">1000 GPUs | cost $1.6M</th>
+                                <th style="min-width: 3px;">$1,600 | GPUs: 1</th>
+                                <th style="min-width: 3px;">$16,000 | GPUs: 10</th>
+                                <th style="min-width: 3px;">$160,000 |  GPUs: 100</th>
+                                <th style="min-width: 3px;">$1.6M | GPUs: 1000</th>
                             </tr>
                         </thead>
                         {{ table_body | safe }}
                     </table>
                 </div>
                 <div class="card-footer">
-                    <h3>Assumptions and Limitations:</h3>
+                    <h4>Assumptions and Limitations:</h4>
                     <ul>
                         <li>Table inspired by <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Hive Systems Annual Table</a>, but I wanted to make a dynamic version :)</li>
                         <li>Green Passwords are not un-crackable; as GPUs continue to become more efficient with bitwise and integer computations, the time to crack will decrease.
@@ -271,7 +269,8 @@
         <div class="col-md-9 code-snippet">
             <div class="card pb-0">
                 <div class="card-header">
-                    Preview of my code & math behind the table
+                    <h3>Code & Math</h3>
+                    <h4>a snippet of the code and math used to generate the table</h4>
                 </div>
                 <div class="card-body bg-dark" >
 <pre><code class="language-python" style="color: #06FF00;">
@@ -293,14 +292,21 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
         </div>
     </div>
 </div>
-<div class="container" id="contact-section">
-    <div class="row justify-content-center mt-0">
+<div class="container pb-5 mb-5" id="contact-section">
+    <div class="row justify-content-center mt-0 mb-4">
         <div class="col-md-9 contact">
-            {% include "contact.html" %}
+            <div class="card mb-5">
+                <div class="card-header">
+                    <h3>Contact</h3>
+                </div>
+                <div class="card-body">
+                    {% include "contact.html" %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<hr>
+<hr style="border: 2px red solid;">
 <div class="row justify-content-center">
     {% include "footer.html" %}
 </div>

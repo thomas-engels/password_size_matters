@@ -484,6 +484,10 @@ header.masthead .post-heading .meta a {
     width: 100%;
 }
 
+a {
+    text-decoration: underline;
+}
+
 .explanations .btn:hover, .explanations .btn:focus, .explanations .btn:active{
     text-decoration: none;
     color: white;
@@ -510,27 +514,55 @@ header.masthead .post-heading .meta a {
     color: white;
 }
 
+.introduction .nav-pills .nav-link:hover {
+    font-weight: bold;
+}
+
+
 .introduction .nav-pills .nav-link.active {
     border-bottom: 2px #06FF00 solid;
+    text-decoration: none;
+}
+
+.nav-pills a {
+    text-decoration: none;
 }
 
 .btn-primary:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     background-color: #06FF00;
     color: black;
+    font-weight: bold;
+}
+
+.dropdown {
+    margin-top: 1px;
 }
 
 .dropdown, .dropdown-menu {
     z-index: 1000;
+    top: 5;
 }
 
 .dropdown .btn {
-    background-color: black;
     color: #06FF00;
+    background-color: black;
 }
 
-.dropdown-menu a {
-    color: black;
+.dropdown-menu {
+    background-color: black;
+}
+
+.dropdown-item {
+    color: #06FF00;
+    background-color: black;
+    padding: 0;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+    font-weight: bold;
+    color: #06FF00;
 }
 
 html {
