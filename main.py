@@ -113,25 +113,26 @@ def display_home():
 
 @app.route('/', methods=["POST"])
 def update_table():
-    password_form = PasswordForm()
+    form = PasswordForm(request.form)
     scroll = True
     # if password_form.validate_on_submit():
-    if password_form.validate and request.method == 'POST':
-        pwd_type = password_form.password_type.data
-        hash_rate = password_form.hash_rate.data
+    if form.validate and request.method == 'POST':
+        pwd_type = form.password_type.data
+        hash_rate = form.hash_rate.data
         df = create_time_cracking_df_table(password_type_dict[pwd_type], hash_rate)
-        pretty.pprint(df)
         df_table_html = df.to_html(classes=["table", "table-bordered", "table-dark", "table-responsive"],
                                    col_space=3,
                                    justify='center',
                                    )
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
-        pretty.pprint(df_table_body)
+        flash("Success")
     else:
+        flash("Error!")
+        print("Error!")
         df_table_body = ("<div class='row justify-content-center text-center'><div class='col' style='color: red;'><h1>Ooops!</h1><h2>Invalid table inputs</h2>"
                          "<p>Please enter a hash-rate greater than zero.</p></div></div>")
-    return render_template('index.html', table_body=df_table_body, form=password_form, scroll=scroll)
+    return render_template('index.html', table_body=df_table_body, form=form, scroll=scroll)
 
 @app.route("/contact", methods=["POST"])
 def contact():
