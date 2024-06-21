@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap5
 from forms import PasswordForm
 import pandas as pd
@@ -29,14 +29,18 @@ ALPHANUMERICAL_AND_SYMBOLS_CHAR_COUNT = 95
 
 # Assumptions
 pwd_lengths = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-rtx_4090_bcrypt_wf_5_hash_rate = 214842
+rtx_4090_bcrypt_wf_5_hash_rate = 191000
 rtx_4090_gpu_cost = 1600
 gpus = [1, 10, 100, 1000]
 
 
 def get_cracking_time_years(char_count: int, password_length: int, hash_rate: int, gpu_count: int) -> float:
+    if not hash_rate:
+        hash_rate = 1
+    hash_rate = abs(int(hash_rate))
     hash_rate = hash_rate * gpu_count
     return round(((char_count**password_length)/hash_rate)/60/60/24/365, 4)
+
 
 
 def format_cracking_time(years: float) -> str:
@@ -110,7 +114,9 @@ def display_home():
 @app.route('/', methods=["POST"])
 def update_table():
     password_form = PasswordForm()
-    if password_form.validate_on_submit():
+    scroll = True
+    # if password_form.validate_on_submit():
+    if password_form.validate and request.method == 'POST':
         pwd_type = password_form.password_type.data
         hash_rate = password_form.hash_rate.data
         df = create_time_cracking_df_table(password_type_dict[pwd_type], hash_rate)
@@ -122,10 +128,9 @@ def update_table():
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
         pretty.pprint(df_table_body)
-        scroll = True
     else:
-        df_table_body = None
-        scroll = False
+        df_table_body = ("<div class='row justify-content-center text-center'><div class='col' style='color: red;'><h1>Ooops!</h1><h2>Invalid table inputs</h2>"
+                         "<p>Please enter a hash-rate greater than zero.</p></div></div>")
     return render_template('index.html', table_body=df_table_body, form=password_form, scroll=scroll)
 
 @app.route("/contact", methods=["POST"])

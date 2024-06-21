@@ -16,14 +16,11 @@ $(document).ready(function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     var nav_links = document.querySelectorAll('.dropdown-item')
-    console.log(nav_links[0])
     var sections = document.querySelectorAll('h3')
     var parents = []
     for (let i = 0; i < sections.length; i++) {
         parents.push(sections[i].parentElement.parentElement)
     };
-    console.log(parents)
-    console.log(sections[0])
     for (let i = 0; i < sections.length; i++) {
         nav_links[i].addEventListener('click', function(event) {
             event.preventDefault();

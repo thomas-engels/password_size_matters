@@ -15,7 +15,7 @@
 >
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <div class="site-heading">
                     <h1>Passwords vs Hackers</h1>
                     <span class="subheading">scroll down to see how your passwords can always win</span>
@@ -43,7 +43,7 @@
 </div>
 <div class="container introduction mt-5" id="context-section">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-lg-9">
             <div class="card text-center">
                 <div class="card-header">
                     <h3>Context</h3>
@@ -128,28 +128,28 @@
                     </div>
                 </div>
                 <div class="card-body text-left" id="tab-3">
-                    <h5 class="card-title">Protect Yourself</h5>
+                    <h5 class="card-title">So what's the most important thing to remember from this website?</h5>
                     <div class="card-text text-left">
                         <p>
-                            So what's the takeaway? Long passwords (15-20) and NEVER re-using them will make you
+                            Long passwords (15-20) and NEVER re-using them will make you
                             highly resilient to hackers. Cracking such a long password simply isn't worth the hacker's
                             time and money.
                             And even if they manage to crack it, their access will be limited to a single service.
                         </p>
                         <h5>How do you always generate long passwords and NEVER re-use them?</h5>
-                        <h5 style="color: green;">A Password Manager!</h5>
+                        <h4 style="color: green;">A Password Manager!</h4>
                         <p>
                             KeeperSecurity (<a
-                                href="https://www.keepersecurity.com/">https://www.keepersecurity.com/</a>) is my
+                                href="https://www.keepersecurity.com/" target="_blank">https://www.keepersecurity.com/</a>) is my
                             preferred Password Manager.
                             At less than $3 per month, I enjoy advanced encryption standards, dark web monitoring,
                             integrations to every OS and device,
                             off-the-grid/airplane mode usage, family plans, and numerous other security benefits.
                             To find the best fit for you, I recommend you research a few other excellent Password
                             Managers like
-                            <a href="https://1password.com/">https://1password.com/</a>,
-                            <a href="https://bitwarden.com/">https://bitwarden.com/</a>, and <a
-                                href="https://nordpass.com/">https://nordpass.com/</a>.
+                            <a href="https://1password.com/" target="_blank">https://1password.com/</a>,
+                            <a href="https://bitwarden.com/" target="_blank">https://bitwarden.com/</a>, and <a
+                                href="https://nordpass.com/" target="_blank">https://nordpass.com/</a>.
                         </p>
                         <p>
                             The peace of mind is invaluable, plus you’re not wasting your time resetting passwords.
@@ -167,14 +167,14 @@
 </div>
 <div class="container">
     <div class="row justify-content-center my-2">
-        <div class="col-md-9">
+        <div class="col-lg-9">
             <hr>
         </div>
     </div>
 </div>
 <div class="container" id="table-section">
     <div class="row d-flex justify-content-center my-2 main">
-        <div class="col-md-9">
+        <div class="col-lg-9">
             <div class="card">
                 <div class="card-header text-center" id="table-card-header">
                     <h3>Time and Cost To Crack Passwords</h3></div>
@@ -183,90 +183,102 @@
                         <div class="col-sm-12 col-md-7 mt-2">
                             <div class="card border-dark h-100">
                                 <div class="card-header">
-                                    Table Inputs
+                                    <h4>Table Inputs</h4>
                                 </div>
                                 <div class="card-body">
-                                     {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
+                                    <div class="card-title"><em>Modify the following fields to alter the table <br> (and witness the power of long passwords!)</em></div>
+                                    <div class="card-text">
+                                        {{ form.hidden_tag() }}
+                                        {% if form.hash_rate.errors %}
+                                        <div class="alert alert-danger">
+                                            {% for error in form.hash_rate.errors %}
+                                            <span>{{ error }}</span><br>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                        {{ render_form(form, novalidate=True, button_map={"search": "primary"}) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-5 mt-2">
                             <div class="card border-dark h-100">
                             <div class="card-header">
-                                RTX 4090 Benchmarks
+                                RTX 4090 GPU Benchmarks
                             </div>
                             <div class="card-body">
-                                <ul class="list-group">
+                                <ul class="list-group mb-2">
                                     <li class="list-group-item"><a
-                                            href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd">bcrypt (work factor
+                                            href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd" target="_blank">bcrypt (work factor
                                         5):  <br> 191,000 H/Sec</a></li>
                                     <li class="list-group-item"><a
-                                            href="https://www.synercomm.com/blog/password-hash-cracking-with-the-nvidia-rtx-4090/">NTLM:
+                                            href="https://www.synercomm.com/blog/password-hash-cracking-with-the-nvidia-rtx-4090/" target="_blank">NTLM:
                                         <br> 252,000,000,000 H/Sec</a></li>
                                     <li class="list-group-item"><a
-                                            href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green-2023?utm_source=2024post">MD5:
+                                            href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green-2023?utm_source=2024post" target="_blank">MD5:
                                         <br> 164,100,000,000 H/Sec</a></li>
                                 </ul>
+                                <div class="card-text">
+                                    <p>
+                                        A GPU (Graphics Processing Unit) is the computer hardware used for bitwise and integer computations; the foundation of hashing algorithms (e.g., bcrypt, NTLM, MD5).
+                                        The NVIDIA RTX 4090 is the best consumer-grade GPU; costs $1600 USD.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         </div>
                     </div>
-                    <table id='time-table' border="1" class="dataframe table table-bordered table-dark table-responsive p-2 rounded mt-5">
-                        <thead>
+                    <div class="row" id='time-table'>
+                        <div class="col mt-4">
+                            <table border="1"
+                               class="dataframe table table-bordered table-dark table-responsive p-2 rounded mt-5">
+                            <thead class="">
                             <tr style="text-align: center;">
                                 <th style="min-width: 3px;">Password Length</th>
-                                <th style="min-width: 3px;">$1,600 | GPUs: 1</th>
-                                <th style="min-width: 3px;">$16,000 | GPUs: 10</th>
-                                <th style="min-width: 3px;">$160,000 |  GPUs: 100</th>
-                                <th style="min-width: 3px;">$1.6M | GPUs: 1000</th>
+                                <th style="min-width: 3px;"> > $1,600 using 1 GPU</th>
+                                <th style="min-width: 3px;"> > $16,000 using 10 GPUs</th>
+                                <th style="min-width: 3px;"> > $160,000 using 100 GPUs</th>
+                                <th style="min-width: 3px;"> > $1.6M using 1000 GPUs</th>
                             </tr>
-                        </thead>
-                        {{ table_body | safe }}
-                    </table>
+                            </thead>
+                            {{ table_body | safe }}
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <h4>Assumptions and Limitations:</h4>
                     <ul>
-                        <li>Table inspired by <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Hive Systems Annual Table</a>, but I wanted to make a dynamic version :)</li>
-                        <li>Green Passwords are not un-crackable; as GPUs continue to become more efficient with bitwise and integer computations, the time to crack will decrease.
-                            Thus, ensuring you're in the green minimizes your risk even in the face of major GPU advancements.</li>
+                        <li>My table was inspired by <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green" target="_blank">Hive Systems' Annual Table</a>.</li>
+                        <li>The "Green Passwords" are still crackable, but they will greatly minimize your risk exposure; even in the face of major GPU advancements.</li>
+                        <li>Cracking times assume your password is randomly generated; not a human-written password.
+                            There are only 50,000 active English words so hackers prioritize them in search over random letters and numbers. (Another major benefit of Password Managers!)</li>
+                        <li>The cost estimates ONLY account for purchasing NVIDIA RTX 4090 GPUs; they do not account for additional hardware and operating costs like electricity and Mountain Dew.</li>
                         <li>Password types and respective character counts:
                             <ul>
-                                <li>Numbers Only - 10</li>
-                                <li>Letters Only - 52 </li>
-                                <li>Numbers and Letters - 62 </li>
-                                <li>Numbers, Letters, and Special Characters ( ^*%$!&@# ) - 70</li>
+                                <li>Numbers Only (0-9) - 10</li>
+                                <li>Letters Only (A-Z a-z) - 52 </li>
+                                <li>Numbers and Letters (0-9 A-Z a-z) - 62 </li>
+                                <li>Numbers, Letters, and Special Characters (0-9 A-Z a-z ^*%$!&@#) - 70</li>
                             </ul>
                         </li>
                         <li>Hash-Speed is entirely dependent on the password hashing algorithm, the chosen GPU, and several other factors.</li>
-                        <li>A consumer-accessible Tier-1 GPU retails for $1,600; e.g., NVIDIA RTX 4090. </li>
-                        <li>From what I could find on the internet, the NVIDA RTX 4090 achieves the following benchmarks:
-                            <ul>
-                                <li><a
-                                        href="https://gist.github.com/Chick3nman/32e662a5bb63bc4f51b847bb422222fd">bcrypt(factor
-                                    5) - 191,000 H/Sec</a></li>
-                                <li><a
-                                        href="https://www.synercomm.com/blog/password-hash-cracking-with-the-nvidia-rtx-4090/">NTLM
-                                    - 252,000,000,000 H/Sec</a></li>
-                                <li><a
-                                        href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green-2023?utm_source=2024post">MD5
-                                    - 164,100,000,000 H/Sec</a></li>
-                            </ul>
-                        </li>
                     </ul>
+                    <p><em>I recognize the potential for more scientific rigor so please let me know your thoughts.
+                        You may contact me through the form below. Or, fork my repository on Github and submit a Pull-Request. I would love to collaborate.</em></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row justify-content-center my-2">
-        <div class="col-md-9">
+        <div class="col-lg-9">
             <hr>
         </div>
     </div>
 </div>
 <div class="container" id="code-section">
     <div class="row justify-content-around my-2">
-        <div class="col-md-9 code-snippet">
+        <div class="col-lg-9 code-snippet">
             <div class="card pb-0">
                 <div class="card-header">
                     <h3>Code & Math</h3>
@@ -280,33 +292,36 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
 </code></pre>
                 </div>
                 <div class="card-footer">
-                    See all my code on GitHub: <a href="https://github.com/thomas-engels/password_size_matters">
+                    See all my code on GitHub: <a href="https://github.com/thomas-engels/password_size_matters" target="_blank">
                         https://github.com/thomas-engels/password_size_matters</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-lg-9">
             <hr>
         </div>
     </div>
 </div>
 <div class="container pb-5 mb-5" id="contact-section">
     <div class="row justify-content-center mt-0 mb-4">
-        <div class="col-md-9 contact">
+        <div class="col-lg-9 contact">
             <div class="card mb-5">
                 <div class="card-header">
                     <h3>Contact</h3>
                 </div>
                 <div class="card-body">
+                    <div class="card-title">
+                        Questions or want to collaborate to make this table better? Please reach out.
+                    </div>
                     {% include "contact.html" %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<hr style="border: 2px red solid;">
+<hr>
 <div class="row justify-content-center">
     {% include "footer.html" %}
 </div>
