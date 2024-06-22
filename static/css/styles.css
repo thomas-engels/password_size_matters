@@ -568,3 +568,9 @@ a {
 html {
     scroll-behavior: smooth;
 }
+
+#table-form ul {
+    list-style: none;
+    padding-left: 0;
+    margin-right: 0;
+}
