@@ -7,11 +7,15 @@ import os
 from dotenv import load_dotenv
 import pprint as pretty
 import smtplib
+from numerize import numerize
+from big_number_manager import BigNumberManager
+
 
 load_dotenv()
 
 app = Flask(__name__)
 Bootstrap5(app)
+bn = BigNumberManager()
 
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 
@@ -44,43 +48,27 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
 
 
 def format_cracking_time(years: float) -> str:
-    if years > 1e24:  # septillion
-        num = float(str(years)[:3])
-        return f"{num} Sp yrs"
-    elif years > 1e21:  # sextillion
-        num = float(str(years)[:3])
-        return f"{num} Sx yrs"
-    elif years > 1e18:  # quintillion
-        num = float(str(years)[:3])
-        return f"{num} Qi yrs"
-    elif years > 1e15:  # quadrillion
-        num = float(str(years)[:3])
-        return f"{num} Qa yrs"
-    elif years > 1e12:  # trillion
-        num = float(str(years)[:3])
-        return f"{num} T yrs"
-    elif years > 1e9:  # billion
-        num = float(str(years)[:3])
-        return f"{num} B yrs"
-    elif years > 1e6:  # million
-        num = float(str(years)[:3])
-        return f"{num} M yrs"
-    elif years > 1e3:
-        return f"{round(years):,} yrs"
-    elif years >= 1:
-        return f"{round(years, 2):,} yrs"
-    elif 1 > years > (1/365):
-        days = round(years * 365, 2)
-        return f"{days} days"
-    elif (1/365) > years > (1/365 * 1/24):
-        hours = round(years * 365 * 24, 2)
-        return f"{hours} hrs"
-    elif (1/365 * 1/24) > years > (11/365 * 1/24 * 1/60):
-        minutes = round(years * 365 * 24 * 60, 2)
-        return f"{minutes} mins"
+    if years > 1e6:
+        years = round(years)
+        years = bn.format_big_num(years)
+        return f"{years} yrs"
     else:
-        seconds = round(years * 365 * 24 * 60 * 60, 2)
-        return f"{seconds} secs"
+        if years > 1e3:
+            return f"{round(years):,} yrs"
+        elif years >= 1:
+            return f"{round(years, 2):,} yrs"
+        elif 1 > years > (1/365):
+            days = round(years * 365, 2)
+            return f"{days} days"
+        elif (1/365) > years > (1/365 * 1/24):
+            hours = round(years * 365 * 24, 2)
+            return f"{hours} hrs"
+        elif (1/365 * 1/24) > years > (11/365 * 1/24 * 1/60):
+            minutes = round(years * 365 * 24 * 60, 2)
+            return f"{minutes} mins"
+        else:
+            seconds = round(years * 365 * 24 * 60 * 60, 2)
+            return f"{seconds} secs"
 
 
 def create_time_cracking_df_table(password_type: int, hash_rate):
