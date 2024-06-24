@@ -18,7 +18,7 @@ class PasswordForm(FlaskForm):
 
     hash_rate = IntegerField(
         "Single GPU's Hash-Speed (Hash/Seconds): ",
-        default=215000,
+        default=164100000000,
         validators=[
             NumberRange(min=1, max=9999999999999999999999999),
             DataRequired()
