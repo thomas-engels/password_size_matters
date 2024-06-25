@@ -114,12 +114,6 @@ def update_table():
                                    )
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
-        flash("Success")
-    else:
-        flash("Error!")
-        print("Error!")
-        df_table_body = ("<div class='row justify-content-center text-center'><div class='col' style='color: red;'><h1>Ooops!</h1><h2>Invalid table inputs</h2>"
-                         "<p>Please enter a hash-rate greater than zero.</p></div></div>")
     return render_template('index.html', table_body=df_table_body, form=form, scroll=scroll)
 
 @app.route("/contact", methods=["POST"])

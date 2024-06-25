@@ -19,8 +19,10 @@
                 <div class="site-heading">
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
-                    <h1>{{ messages[0] }}</h1>
-                    <span class="subheading">I will reply to you soon</span>
+                    {% for message in messages %}
+                    <h1>Message sent</h1>
+                    <span class="subheading">I will reply soon!</span>
+                    {% endfor %}
                     {% else %}
                     <h1>Passwords vs Hackers</h1>
                     <span class="subheading">scroll down to see how your passwords can always win</span>

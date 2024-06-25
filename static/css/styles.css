@@ -574,3 +574,11 @@ html {
     padding-left: 0;
     margin-right: 0;
 }
+
+.overlay-alert {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050; /* Ensure it's above other content */
+}
