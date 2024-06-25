@@ -127,7 +127,8 @@ def contact():
     if request.method == "POST":
         data = request.form
         send_email(data["name"], data["email"], data["phone"], data["message"])
-    return redirect(url_for('home'))
+        flash("Message sent!", 'success')
+    return redirect(url_for('display_home'))
 
 
 def send_email(name, email, phone, message):

@@ -17,8 +17,15 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-lg-9">
                 <div class="site-heading">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <h1>{{ messages[0] }}</h1>
+                    <span class="subheading">I will reply to you soon</span>
+                    {% else %}
                     <h1>Passwords vs Hackers</h1>
                     <span class="subheading">scroll down to see how your passwords can always win</span>
+                    {% endif %}
+                    {% endwith %}
                 </div>
             </div>
         </div>
@@ -327,7 +334,7 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
                 </div>
                 <div class="card-body">
                     <div class="card-title">
-                        Questions or want to collaborate to make this table better? Please reach out.
+                        Questions, comments, or want to work together? Please reach out.
                     </div>
                     {% include "contact.html" %}
                 </div>
