@@ -7,7 +7,6 @@ import os
 from dotenv import load_dotenv
 import pprint as pretty
 import smtplib
-from numerize import numerize
 from big_number_manager import BigNumberManager
 
 
@@ -44,7 +43,6 @@ def get_cracking_time_years(char_count: int, password_length: int, hash_rate: in
     hash_rate = abs(int(hash_rate))
     hash_rate = hash_rate * gpu_count
     return round(((char_count**password_length)/hash_rate)/60/60/24/365, 4)
-
 
 
 def format_cracking_time(years: float) -> str:
@@ -115,6 +113,7 @@ def update_table():
         soup = BeautifulSoup(df_table_html, 'html.parser')
         df_table_body = soup.find('tbody')
     return render_template('index.html', table_body=df_table_body, form=form, scroll=scroll)
+
 
 @app.route("/contact", methods=["POST"])
 def contact():
