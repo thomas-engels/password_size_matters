@@ -18,7 +18,7 @@ bn = BigNumberManager()
 
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 
-# Facts
+# Facts/assumptions
 password_type_dict = {
     '1': 10,
     '2': 52,
